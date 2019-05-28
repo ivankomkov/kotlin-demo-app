@@ -19,6 +19,7 @@ package com.example.android.roomphotossample.data
 import androidx.lifecycle.LiveData
 import com.example.android.roomphotossample.data.Photo
 import com.example.android.roomphotossample.data.PhotoDao
+import java.util.*
 
 /**
  * Abstracted Repository as promoted by the Architecture Guide.
@@ -36,5 +37,34 @@ class PhotoRepository(private val photoDao: PhotoDao) {
     // thread, blocking the UI.
     suspend fun insert(photo: Photo) {
         photoDao.insert(photo)
+    }
+
+    companion object {
+        @Volatile
+        private var INSTANCE: PhotoRepository? = null
+
+        fun getRepository(photoDao: PhotoDao
+        ): PhotoRepository {
+            // if the INSTANCE is not null, then return it,
+            // if it is, then create the database
+            return INSTANCE ?: synchronized(this) {
+                val instance = PhotoRepository(photoDao)
+                INSTANCE = instance
+                // return instance
+                instance
+            }
+        }
+    }
+
+    fun previousPhoto(photo: Photo?): Photo? {
+        return allPhotos.value?.asSequence()?.filter {
+            p -> Date.parse(p.date).toInt() < Date.parse(photo?.date).toInt()
+        }?.lastOrNull() ?: photo
+    }
+
+    fun nextPhoto(photo: Photo?): Photo? {
+        return allPhotos.value?.asSequence()?.filter {
+            p -> Date.parse(p.date).toInt() > Date.parse(photo?.date).toInt()
+        }?.firstOrNull() ?: photo
     }
 }

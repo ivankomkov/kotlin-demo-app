@@ -41,7 +41,7 @@ class PhotoViewModel(application: Application) : AndroidViewModel(application) {
 
     init {
         val photosDao = PhotoDatabase.getDatabase(application, viewModelScope).photoDao()
-        repository = PhotoRepository(photosDao)
+        repository = PhotoRepository.getRepository(photosDao)
         allPhotos = repository.allPhotos
     }
 

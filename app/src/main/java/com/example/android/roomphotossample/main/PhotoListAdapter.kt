@@ -19,39 +19,36 @@ package com.example.android.roomphotossample.main
 import android.content.Context
 import android.content.Intent
 import android.graphics.BitmapFactory
+import android.os.Bundle
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.content.ContextCompat.startActivity
 import com.example.android.roomphotossample.R
 import com.example.android.roomphotossample.data.Photo
-import com.example.android.roomphotossample.edit_photo.EditActivity
+import com.example.android.roomphotossample.show_photo.ShowPhotoActivity
 
 
 class PhotoListAdapter internal constructor(
         context: Context
 ) : RecyclerView.Adapter<PhotoListAdapter.PhotoViewHolder>() {
 
-    interface OnItemClickListener{
-        fun onItemClick(position: Int)
-    }
-
     private val inflater: LayoutInflater = LayoutInflater.from(context)
     private var photos = emptyList<Photo>() // Cached copy of photos
-    private lateinit var mListener: OnItemClickListener
 
-    inner class PhotoViewHolder(itemView: View, onItemClickListener: OnItemClickListener) : RecyclerView.ViewHolder(itemView) {
+    inner class PhotoViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val imageView: ImageView = itemView.findViewById(R.id.riImage)
-        val commentView: TextView = itemView.findViewById(R.id.riComment)
-        val dateView: TextView = itemView.findViewById(R.id.riDate)
-        val locationView: TextView = itemView.findViewById(R.id.riLocation)
+        val commentView: TextView = itemView.findViewById(R.id.show_riComment)
+        val dateView: TextView = itemView.findViewById(R.id.show_riDate)
+        val locationView: TextView = itemView.findViewById(R.id.show_riLocation)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PhotoViewHolder {
         val itemView = inflater.inflate(R.layout.recyclerview_item, parent, false)
-        return PhotoViewHolder(itemView, mListener)
+        return PhotoViewHolder(itemView)
     }
 
     override fun onBindViewHolder(holder: PhotoViewHolder, position: Int) {
@@ -63,8 +60,10 @@ class PhotoListAdapter internal constructor(
 
         holder.itemView.setOnClickListener { view ->
             val photo = photos.get(position)
-            var intent = Intent(view.context, EditActivity::class.java)
-            intent.putExtra("photoId", photo.id)
+            val intent = Intent(view.context, ShowPhotoActivity::class.java)
+            val bundle = Bundle()
+            bundle.putSerializable("photo", photo)
+            intent.putExtras(bundle)
             view.context.startActivity(intent)
         }
     }

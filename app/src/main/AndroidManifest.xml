@@ -12,7 +12,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".edit_photo.EditActivity"></activity>
         <activity
             android:name="com.example.android.roomphotossample.main.MainActivity"
             android:label="@string/app_name"
@@ -24,6 +23,7 @@
             </intent-filter>
         </activity>
         <activity android:name="com.example.android.roomphotossample.new_photo.NewPhotoActivity"></activity>
+        <activity android:name="com.example.android.roomphotossample.show_photo.ShowPhotoActivity"></activity>
     </application>
 
 </manifest>

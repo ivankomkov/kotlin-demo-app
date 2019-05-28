@@ -51,7 +51,7 @@ class NewPhotoActivity : AppCompatActivity() {
     public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_new_photo)
-        mCommentView = findViewById(R.id.riComment)
+        mCommentView = findViewById(R.id.show_riComment)
         mNewPhotoViewModel = ViewModelProviders.of(this).get(NewPhotoViewModel::class.java)
 
         val btnCancel = findViewById<Button>(R.id.button_cancel)
@@ -81,7 +81,7 @@ class NewPhotoActivity : AppCompatActivity() {
                         Toast.LENGTH_LONG
                 ).show()
             } else {
-                val txtComment = findViewById<TextView>(R.id.riComment)
+                val txtComment = findViewById<TextView>(R.id.show_riComment)
                 mNewPhotoViewModel.setComment(txtComment.text.toString())
                 mNewPhotoViewModel.save()
                 setResult(Activity.RESULT_OK, replyIntent)
@@ -110,11 +110,9 @@ class NewPhotoActivity : AppCompatActivity() {
         }
     }
 
-
-
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
-            val imageView = findViewById<ImageView>(R.id.imageView)
+            val imageView = findViewById<ImageView>(R.id.show_imageView)
             val imageBitmap = data?.extras?.get("data") as Bitmap
             imageView.setImageBitmap(imageBitmap)
             mNewPhotoViewModel.setImage(imageBitmap)
@@ -126,4 +124,3 @@ class NewPhotoActivity : AppCompatActivity() {
         const val EXTRA_REPLY = "com.example.android.photolistsql.REPLY"
     }
 }
-

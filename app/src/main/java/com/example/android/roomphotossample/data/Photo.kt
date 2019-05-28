@@ -17,6 +17,7 @@ package com.example.android.roomphotossample.data
  */
 
 import androidx.room.*
+import java.io.Serializable
 import java.util.*
 
 
@@ -32,7 +33,7 @@ import java.util.*
  */
 
 @Entity
-data class Photo(var comment: String?) {
+data class Photo(var comment: String?) : Serializable {
     @PrimaryKey(autoGenerate = true)
     var id: Int = 0
     var path: String? = null

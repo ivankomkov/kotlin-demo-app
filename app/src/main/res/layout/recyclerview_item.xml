@@ -30,14 +30,14 @@ limitations under the License. -->
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/riComment"
+            android:id="@+id/show_riComment"
             style="@style/word_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@android:color/holo_orange_light" />
 
         <TextView
-            android:id="@+id/riDate"
+            android:id="@+id/show_riDate"
             style="@style/word_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -45,7 +45,7 @@ limitations under the License. -->
             android:background="@android:color/holo_blue_light" />
 
         <TextView
-            android:id="@+id/riLocation"
+            android:id="@+id/show_riLocation"
             android:layout_width="match_parent"
             android:layout_height="41dp"
             android:text="TextView" />
