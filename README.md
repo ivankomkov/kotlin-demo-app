@@ -1,5 +1,5 @@
 Built on top of a minimal sample containing a Kotlin MVVM Android app with a Recycler view and Room suppot.
-Original app: https://codelabs.developers.google.com/codelabs/android-room-with-a-view/index.html?index=..%2F..%2Findex#0
+Original app: https://codelabs.developers.google.com/codelabs/android-room-with-a-view/index.html?index=..%2F..%2Findex#15
 
 Additions:
 - Take, save and load photos
