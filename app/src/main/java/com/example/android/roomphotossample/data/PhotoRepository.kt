@@ -17,8 +17,6 @@ package com.example.android.roomphotossample.data
  */
 
 import androidx.lifecycle.LiveData
-import com.example.android.roomphotossample.data.Photo
-import com.example.android.roomphotossample.data.PhotoDao
 import java.util.*
 
 /**

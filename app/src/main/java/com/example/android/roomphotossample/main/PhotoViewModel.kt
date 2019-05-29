@@ -20,6 +20,7 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
+import com.example.android.roomphotossample.aop.TestMe
 import com.example.android.roomphotossample.data.Photo
 import com.example.android.roomphotossample.data.PhotoDatabase
 import com.example.android.roomphotossample.data.PhotoRepository
@@ -48,6 +49,7 @@ class PhotoViewModel(application: Application) : AndroidViewModel(application) {
     /**
      * Launching a new coroutine to insert the data in a non-blocking way
      */
+    @TestMe
     fun insert(photo: Photo) = viewModelScope.launch {
         repository.insert(photo)
     }

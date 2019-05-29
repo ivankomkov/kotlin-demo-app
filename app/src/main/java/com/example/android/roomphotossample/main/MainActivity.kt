@@ -27,13 +27,16 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.appcompat.widget.Toolbar
 import com.example.android.roomphotossample.new_photo.NewPhotoActivity
 import com.example.android.roomphotossample.R
+import com.example.android.roomphotossample.aop.PerformanceLogable
+import com.example.android.roomphotossample.aop.TestMe
 
-
+@PerformanceLogable
 class MainActivity : AppCompatActivity() {
 
     private val newPhotoActivityRequestCode = 1
     private lateinit var photoViewModel: PhotoViewModel
 
+    @TestMe
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
